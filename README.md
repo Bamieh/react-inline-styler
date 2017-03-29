@@ -6,7 +6,7 @@ React inline styler is a full solution for using inline styles in react. The lib
 
 - Fully configurable: you can add a theme, helpers, processor configurations, etc.
 - Super simple: the styles in javascript are just an object or a function.
-- Super easy setup: the setup process is inspired from react-redux, the only thing you need to do is to add a `Provider` on the app level, and wrap your functions with an `injectStyles` HOC function.
+- Easy setup: the setup process is inspired from react-redux, the only thing you need to do is to add a `Provider` on the app level, and wrap your functions with an `injectStyles` HOC function.
 - Plug-and-play solution to proccess the styles, adding RTL support, dynamic prefixing, and much more!
 - Works with isomorphic apps and supports HOT reloads.
 - Utilities to merge styles and proccess styles dynamically during the component life cycle.
@@ -130,5 +130,5 @@ export default styles
 
 ## License
 
-[MIT](blob/master/LICENSE). Copyright (c) 2017 Ahmad Bamieh
+[MIT](LICENSE). Copyright (c) 2017 Ahmad Bamieh
 
