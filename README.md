@@ -1,7 +1,7 @@
 # React Inline Styler
 
 
-##Getting started
+## Getting started
 
 ```
 npm install react-inline-styler
@@ -33,16 +33,16 @@ export default injectStyles(styles)(MyComponent)
 
 ## Styles File
 ```javascript
-const styles = ({theme, stylerHelpers}) => {
+const styles = (configs) => {
   const {
     colors,
-  } = theme;
+  } = configs.theme;
 
   const {
     onRTL,
     onlyRTL,
     onlyLTR,
-  } = helpers;
+  } = configs.helpers;
 
   return {
     containerStyle: {
@@ -65,56 +65,4 @@ const styles = ({theme, stylerHelpers}) => {
 
 export default styles
 ```
-
-# USING LOCALED STYLES IN JAVASCRIPT INLINE CSS
-## Localization list
-localizing styles happens on the key of the attibute, or its value.
-
-### Localed Values
-1. float
-// float: start
-// float: end
-
-2. direction
-// direction: start
-// direction: end
-
-3. transformOrigin
-// transformOrigin: start
-// transformOrigin: end
-
-4. transform
-// transform: translate
-// transform: skew
-
-### Localed Keys
-
-1. margin
-// marginStart
-// marginEnd
-
-2. padding
-// paddingStart
-// paddingEnd
-
-3. position
-// start
-// end
-
-4. border
-// borderStart
-// borderStartWidth
-// borderStartStyle
-// borderStartColor
-// borderEnd
-// borderEndWidth
-// borderEndStyle
-// borderEndColor
-
-5. borderRadius
-// borderTopStartRadius
-// borderTopEndRadius
-// borderBottomStartRadius
-// borderBottomEndRadius
-
 

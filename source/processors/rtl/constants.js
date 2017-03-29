@@ -1,1 +1,0 @@
-export const IS_RTL_UNDEFINED = `isRTL should be supplied to the configurations of the react-inline-styler Provider component`
