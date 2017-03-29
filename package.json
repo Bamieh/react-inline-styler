@@ -1,0 +1,32 @@
+{
+  "name": "react-inline-styler",
+  "version": "0.1.0",
+  "description": "react inline styles injector",
+  "main": "./distribution/index.js",
+  "scripts": {
+    "build": "babel source --out-dir distribution",
+    "test": "mocha --require test/setup.js test/**/*.test.js --compilers js:babel-core/register --recursive",
+    "test-continuous": "mocha --require test/setup.js test/**/*.test.js --compilers js:babel-core/register --recursive --watch",
+    "prepublish": "npm run build"
+  },
+  "author": "Ahmad Bamieh",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^15.3.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-node5": "^11.1.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "chai": "^3.5.0",
+    "chai-spies": "^0.7.1",
+    "enzyme": "^2.8.0",
+    "jsdom": "^9.12.0",
+    "mocha": "^3.2.0",
+    "object.entries": "^1.0.4",
+    "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
+}
