@@ -2,6 +2,17 @@
 
 React inline styler is a full solution for using inline styles in react. The library setup is similar to react redux by using a `Provider` component on the app level, and a HOC to wrap the components with to provide the proccessed styles.
 
+## Features
+
+- Fully configurable: you can add a theme, helpers, processor configurations, etc.
+- Super simple: the styles in javascript are just an object or a function.
+- Super easy setup: the setup process is inspired from react-redux, the only thing you need to do is to add a `Provider` on the app level, and wrap your functions with an `injectStyles` HOC function.
+- Plug-and-play solution to proccess the styles, adding RTL support, dynamic prefixing, and much more!
+- Works with isomorphic apps and supports HOT reloads.
+- Utilities to merge styles and proccess styles dynamically during the component life cycle.
+- Modular way for using js inline styles in react instead of having them inside the render function or such.
+- Continuously maintained, unit tested, and used in production on large scale apps.
+
 
 ## Getting started
 
@@ -18,17 +29,6 @@ In late 2016 we migrated from Polymer to React (but thats for another story), we
 Based on the customization we needed to provide to components as props, we started looking for other solution using javascript styles. needless to say, some are very weird to implement with weird syntax that "just doesnt feel right", and some try to mimic writing styles in pure sass or css manner via javascript, which all by itself felt wrong to us aswell. some had huge performance dips, and mostly, non of them were easily configurable to enable us to add RTL support for arabic language and such, or add prefixes and other cool features.
 
 And this is how *React Inline Styler* was born, it is a solution for scalable, optimized styles in javascript for React *Psst, React native very soon.
-
-## Features
-
-- Fully configurable: you can add a theme, helpers, processor configurations, etc.
-- Super simple: the styles in javascript are just an object or a function.
-- Super easy setup: the setup process is inspired from react-redux, the only thing you need to do is to add a `Provider` on the app level, and wrap your functions with an `injectStyles` HOC function.
-- Plug-and-play solution to proccess the styles, adding RTL support, dynamic prefixing, and much more!
-- Works with isomorphic apps and supports HOT reloads.
-- Utilities to merge styles and proccess styles dynamically during the component life cycle.
-- Modular way for using js inline styles in react instead of having them inside the render function or such.
-- Continuously maintained, unit tested, and used in production on large scale apps.
 
 
 ## Example Usage
@@ -54,7 +54,7 @@ class App extends Component {
 } 
 ```
 
-### Step 2: Injecting Proccessed styles to the Component
+### Step 2: Injecting Processed styles to the Component
 
 ```javascript
 import React, {Component} from 'react'
@@ -92,6 +92,8 @@ import rtlProccessor from 'react-inline-styler-processor-rtl'
 Full documentation is being prepared.
 
 ## Styles File
+Notice that the javascript styles can be an object instead of a function, if non of the configs are needed.
+
 ```javascript
 const styles = (configs) => {
   const {
