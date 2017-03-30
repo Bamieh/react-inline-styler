@@ -81,15 +81,96 @@ export default injectStyles(stylesToInject)(MyComponent)
 ### Step 3: Configuring the Styler
 
 #### Configurations and Theme
-Full documentation is being prepared.
 
-#### ProccessorPipeline
+Add a `configs` prop object to the `Provider` to configure your used processors, define a theme, helpers and all what your styles require.
+
+##### Example theme and helpers
+Simply add the theme and the helpers inside the configs, and these will be passed to the styles function used with the stylesInjector.
+
+```javascript
+import React, {Component} from 'react'
+import ReactInlineStylerProvider from 'react-inline-styler'
+
+class App extends Component {
+  render() {
+    const theme = {
+      colors: {primary: 'blue', secondary: 'white', accent: 'orange'},
+    }
+    const helpers = {
+      getColor(color) {
+        const themeColor = theme.colors[color];
+        if(!themeColor) throw Error(`no color ${color} found in theme`);
+        return themeColor
+      }
+    }
+    const configs = {
+      theme,
+      helpers,
+    }
+    return (
+      <ReactInlineStylerProvider configs={configs}>
+        App Content
+      </ReactInlineStylerProvider>
+    )
+  }
+} 
+```
+*Ofcource having each in a separate file is recommended than defining them inside the render function.*
+
+
+#### Processor Pipeline
+
+The processor pipeline is an array of processors, each modify or add to the styles object, and feed it to the next in the line, the pipeline is super useful as it enables adding prefixes, rtl support, switching from `px` to `em` and `rem` or anything your app needs for your styles.
+
+
+Add a `pipline` prop array to the `Provider` with your processor functions.
+
+
+##### Example using some processors
+
+- The [RTL processor](https://github.com/Bamieh/react-inline-styler-processor-rtl) allows you to use the same style base for both rtl and ltr languages, it will be used here as an example.
+
+- The autoprefixer prefixes the styles dynamically based on the `user-agent` currently in used, it also works with isomorphic apps.
+
 
 ```
-import rtlProccessor from 'react-inline-styler-processor-rtl'
+import React, {Component} from 'react'
+import ReactInlineStylerProvider from 'react-inline-styler'
+
+import rtlProcessor from 'react-inline-styler-processor-rtl'
+import autopefixerProcessor from 'react-inline-styler-processor-autoprefixer'
+
+
+class App extends Component {
+  render() {
+    const pipeline = [rtlProcessor, autopefixerProcessor];
+    const configs = {
+      // rtl processor configs and options
+      isRTL: false,
+      helpers: {...rtlHelperes},
+      // autoprefixer options
+      enablePrefixing: !DEVELOPMENT,
+    }
+    return (
+      <ReactInlineStylerProvider pipeline={pipeline} configs={configs}>
+        App Content
+      </ReactInlineStylerProvider>
+    )
+  }
+}
+
+
 ```
 
-Full documentation is being prepared.
+Creating your own custom processor is simple, its just a function that accepts a styles object, and the configs object. check the processor boilerplate to [create a processor](https://github.com/Bamieh/react-inline-styler-processor-boilerplate).
+
+##### List of processors
+
+1. [rtl support](https://github.com/Bamieh/react-inline-styler-processor-rtl): use `start` and `end` instead of `right` and `left` so they can be dynamic based on the language direction.
+2. autoprefixer: auto-prefix javascript style dynamically based on the running browser.
+
+
+**Please inform us if you make a processor, we'd be happy to add it to the list for people to use.**
 
 ## Styles File
 Notice that the javascript styles can be an object instead of a function, if non of the configs are needed.
