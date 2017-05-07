@@ -1,3 +1,5 @@
+import castToFunction from '../utils/castToFunction'
+import processStyleObject from './processStyleObject'
 const processStyleTree = (stylesTree, processingPipeline, configs) => {
   const evaluatedStylesTree = castToFunction(stylesTree)(configs);
   if(!processingPipeline.length) return evaluatedStylesTree;

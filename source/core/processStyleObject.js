@@ -3,7 +3,6 @@ const processorRunner = configs =>
 
 const processStyleObject = (styleObject, processingPipeline, configs)  => {
   const runProccessor = processorRunner(configs);
-
   return processingPipeline.reduce(runProccessor, styleObject)
 }
 
