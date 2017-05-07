@@ -115,7 +115,7 @@ class App extends Component {
   }
 } 
 ```
-*Ofcource having each in a separate file is recommended than defining them inside the render function.*
+*Ofcourse having each in a separate file is recommended than defining them inside the render function.*
 
 
 #### Processor Pipeline

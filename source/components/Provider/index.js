@@ -18,7 +18,7 @@ class Provider extends Component {
     this.state = {
       configs: this.mergeFromPropsAndContext(props, context),
     };
-    this.pipeline = this.props[PIPELINE_PROP];
+    this.pipeline = [...this.props[PIPELINE_PROP]];
   }
 
   getChildContext() {

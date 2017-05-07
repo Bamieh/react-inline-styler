@@ -11,6 +11,10 @@ import {UNWRAPPED_INJECTOR_ERR, PIPELINE, CONFIGURATIONS} from '../../constants'
 
 import castToFunction from '../../utils/castToFunction';
 
+import processStyleObject from '../../core/processStyleObject'
+import processStyleTree from '../../core/processStyleTree'
+import {isInlineStylerObject} from '../../core/stampObject'
+
 function getDisplayName(Component) {
   return Component.displayName || Component.name || 'Component';
 }
@@ -19,6 +23,10 @@ const nonProductionEnv = typeof process !== 'undefined' && typeof process.env !=
 
 let nextVersion = 0;
 function injector(styleTree) {
+  // invariant(
+  //   styleTree,
+  //   UNWRAPPED_INJECTOR_ERR(this.constructor.displayName)
+  // );
   const version = nextVersion++;
 
   return function wrapWithInject(WrappedComponent) {
@@ -28,69 +36,63 @@ function injector(styleTree) {
       constructor(props, context) {
         super(props, context);
         this.version = version;
-        this[CONFIGURATIONS] = context[CONFIGURATIONS];
+
+        const {
+          [CONFIGURATIONS]: configs,
+          [PIPELINE]: pipeline,
+        } = context;
 
         invariant(
-          this[CONFIGURATIONS],
+          configs,
           UNWRAPPED_INJECTOR_ERR(this.constructor.displayName)
         );
 
-        this.state = {
-          styles: this.processStyleTree(styleTree, this[CONFIGURATIONS]),
-        };
+        // processingPipeline, configs
+        this.state = { styles: processStyleTree(styleTree, pipeline, configs) };
 
         this.processStyle = this.processStyle.bind(this);
         this.computeStyle = this.computeStyle.bind(this);
 
       }
-      computeStyle() {
-
-      }
-      processStyle(styleObject, configs=this.context[CONFIGURATIONS]) {
-        if(!styleObject || !Object.keys(obj).length) return;
-        const {
-          [PIPELINE]: processingPipeline,
-        } = this.context;
-
-        return processingPipeline.reduce((acc, processor) => {
-          return processor(styleObject, configs)
+      computeStyle(...styles) {
+        return styles.reduce((acc, style) => {
+          if( !style || isInlineStylerObject(style) ) return Object.assign(acc, style);
+          Object.entries(style).forEach(([styleKey, styleValue]) => {
+            if(styleValue) {
+              Object.assign(acc, this.state.styles[styleKey]);
+            }
+          })
+          return acc;
         }, {})
       }
+      processStyle(styleObject) {
+        if(!styleObject || isInlineStylerObject(styleObject)) return styleObject;
 
-      processStyleTree(stylesTree, configs) {
         const {
           [PIPELINE]: processingPipeline,
-        } = this.context;
-
-        const evaluatedStylesTree = castToFunction(stylesTree)(configs);
-        if(!processingPipeline.length) return evaluatedStylesTree;
-
-        return Object.entries(evaluatedStylesTree).reduce((acc, [styleName, styleObject]) => {
-          return Object.assign(acc, {
-            [styleName]: this.processStyle(processingPipeline, configs, styleObject),
-          })
-        }, {});
+          [CONFIGURATIONS]: configs,
+        } = this.context
+        return processStyleObject(styleObject, processingPipeline, configs)
       }
 
-
       shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return !shallowEqual(this[CONFIGURATIONS], nextContext[CONFIGURATIONS]) ||
+        return !shallowEqual(this.context[CONFIGURATIONS], nextContext[CONFIGURATIONS]) ||
                 !shallowEqual(this.props, nextProps);
       }
 
       componentWillReceiveProps(nextProps, nextContext) {
         const nextConfigs = nextContext[CONFIGURATIONS];
-        if (!shallowEqual(this[CONFIGURATIONS], nextConfigs)) {
-          this.recomputeProvided(nextConfigs);
+        if (!shallowEqual(this.context[CONFIGURATIONS], nextConfigs)) {
+          const nextPipeline = nextContext[PIPELINE];
+          this.forceUpdateStyle(nextPipeline, nextConfigs)
         }
       }
 
-      recomputeProvided(newConfigs) {
+      forceUpdateStyle(pipeline, configs) {
         this.setState({
-          styles: this.processStyleTree(styleTree, newConfigs),
-        });
+          styles: processStyleTree(styleTree, pipeline, configs)
+        })
       }
-
 
       render() {
 
@@ -105,11 +107,11 @@ function injector(styleTree) {
       }
     }
 
-    if (nonProductionEnv){
+    if (nonProductionEnv) { // module.hot?
       Inject.prototype.componentWillUpdate = function componentWillUpdate() {
         if (this.version === version) return;
         this.version = version;
-        this.recomputeProvided(this.context[CONFIGURATIONS]);
+        this.forceUpdateStyle(this.context[PIPELINE], this.context[CONFIGURATIONS])
       };
     }
 
