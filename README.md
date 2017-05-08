@@ -1,4 +1,7 @@
 [![Build Status](https://travis-ci.org/Bamieh/react-inline-styler.svg?branch=master)](https://travis-ci.org/Bamieh/react-inline-styler)
+[![Coverage Status](https://coveralls.io/repos/github/Bamieh/react-inline-styler/badge.svg?branch=master)](https://coveralls.io/github/Bamieh/react-inline-styler?branch=master)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 # React Inline Styler
 
