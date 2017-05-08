@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Bamieh/react-inline-styler.svg?branch=master)](https://travis-ci.org/Bamieh/react-inline-styler)
+
 # React Inline Styler
 
 React inline styler is a full solution for using inline styles in react. The library setup is similar to react redux by using a `Provider` component on the app level, and a HOC to wrap the components with to provide the proccessed styles.
