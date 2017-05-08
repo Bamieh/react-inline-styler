@@ -16,8 +16,8 @@ const expect = chai.expect;
 import ProviderContainer from './fixtures/ProviderContainer'
 import InjectedComponent from './fixtures/InjectedComponent'
 
-import {injectStyles} from '../';
-import InlineStylerProvider from '../';
+import {injectStyles} from '../src';
+import InlineStylerProvider from '../src';
 
 import stylesToInject from './fixtures/styles'
 
@@ -27,7 +27,7 @@ import {
   PIPELINE_PROP,
   CONFIGURATIONS,
   CONFIGURATIONS_PROP,
-} from '../source/constants'
+} from '../src/constants'
 
 describe('Injector HOC', () => {
     class Foil extends Component {

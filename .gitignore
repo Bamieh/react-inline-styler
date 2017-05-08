@@ -1,3 +1,10 @@
 node_modules
 distribution
 react-inline-styler.sublime-workspace
+.idea
+database.sqlite
+node_modules
+npm-debug.log
+yarn-error.log
+coverage
+.nyc_output

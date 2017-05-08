@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {injectStyles} from '../../';
+import {injectStyles} from '../../src';
 import stylesToInject from './styles'
 
 const defaultProps = {

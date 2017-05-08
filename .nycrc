@@ -1,0 +1,17 @@
+{
+  "require": [
+    "babel-register"
+  ],
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "src/utils"
+  ],
+  "reporter": [
+    "lcov",
+    "text"
+  ],
+  "sourceMap": false,
+  "instrument": false
+}

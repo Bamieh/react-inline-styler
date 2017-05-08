@@ -4,8 +4,8 @@ import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
 
 import ProviderContainer from './fixtures/ProviderContainer'
-import processStyleObject from '../source/core/processStyleObject'
-import processStyleTree from '../source/core/processStyleTree'
+import processStyleObject from '../src/core/processStyleObject'
+import processStyleTree from '../src/core/processStyleTree'
 
 import { redToBlueProcessor, addFontSize } from './fixtures/processors'
 

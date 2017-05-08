@@ -1,14 +1,15 @@
 {
-  "folders":
-  [
-    {
-      "folder_exclude_patterns":
-      [
-        "distribution",
-        "node_modules",
-        ".git",
-      ],
-      "path": "."
-    }
-  ]
+  "folders": [{
+    "file_exclude_patterns": [
+      "yarn.lock"
+    ],
+    "folder_exclude_patterns": [
+      // "distribution",
+      // "node_modules",
+      // ".git",
+      // "coverage",
+      // ".nyc_output",
+    ],
+    "path": "."
+  }]
 }
