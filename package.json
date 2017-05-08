@@ -111,6 +111,6 @@
     "clean": "babel-node tools/run clean",
     "build": "babel-node tools/run build",
     "prepublish": "yarn run build",
-    "coveralls": "yarn run coverage | coveralls"
+    "coveralls": "nyc yarn test && nyc report --reporter=text-lcov | coveralls"
   }
 }
