@@ -16,13 +16,14 @@ class ProviderContainer extends Component {
   render() {
     const {
       children,
+      pipeline,
     } = this.props;
     const {
       inlineStylerConfigurations,
     } = this.state;
 
     return (
-      <InlineStylerProvider configs={inlineStylerConfigurations}>
+      <InlineStylerProvider configs={inlineStylerConfigurations} pipeline={pipeline}>
         { React.Children.only(children) }
       </InlineStylerProvider>
     )

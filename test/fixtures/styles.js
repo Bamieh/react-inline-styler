@@ -7,6 +7,9 @@ const stylesToInject = () => {
       borderRadius: 4,
       border: '1px solid black',
     },
+    largeRootStyle: {
+      fontSize: '4rem',
+    }
   }
 }
 

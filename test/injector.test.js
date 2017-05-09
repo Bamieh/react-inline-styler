@@ -7,19 +7,15 @@ import {
 
 
 import { mount, shallow, render } from 'enzyme';
-import chai from 'chai';
-import spies from 'chai-spies';
 
-chai.use(spies);
-const expect = chai.expect;
 
 import ProviderContainer from './fixtures/ProviderContainer'
 import InjectedComponent from './fixtures/InjectedComponent'
-
 import {injectStyles} from '../src';
 import InlineStylerProvider from '../src';
 
 import stylesToInject from './fixtures/styles'
+import {redToBlueProcessor} from './fixtures/processors'
 
 import {
   UNWRAPPED_INJECTOR_ERR,
@@ -72,13 +68,7 @@ describe('Injector HOC', () => {
   it('injects styles prop to wrapped component', () => {
       expect(child.props.styles).to.be.an('object');
   });
-  it('injects computeStyle helper to wrapped component', () => {
-      expect(child.props.computeStyle).to.be.a('function');
-  });
-  it('injects proccessStyle helper to wrapped component', () => {
-      expect(child.props.computeStyle).to.be.a('function');
-  });
-  
+
   const initialConfigs = {isRTL: true};
   const differentConfigs = {isRTL: false};
 
@@ -128,6 +118,88 @@ describe('Injector HOC', () => {
     tree.setState({inlineStylerConfigurations: initialConfigs});
     expect(spy).to.have.been.called.exactly(1);
   });
+
+  const mountInjector = (child, pipeline) => {
+    return mount(
+      <ProviderContainer initialConfigs={initialConfigs} pipeline={pipeline}>
+        {child}
+      </ProviderContainer>
+    );
+  }
+
+  describe('Injector proccessStyle', () => {
+    it('injects proccessStyle helper to wrapped component', () => {
+        expect(child.props.computeStyle).to.be.a('function');
+    });
+
+    it('processes a style object', () => {
+      function ProcessStylesChild({ style, processStyle }) {
+        const processedRootStyle = processStyle(style)
+        return <div style={processedRootStyle} />;
+      }
+      const InjectedChild = injectStyles({})(ProcessStylesChild);
+
+      const styleToProccess = {color: "red"};
+      const tree = mountInjector(<InjectedChild style={styleToProccess}/>, [redToBlueProcessor]);
+      expect(tree).to.have.style("color", "blue")
+    });
+    it('processes a style object once', () => {
+      function ProcessStylesChild({ style, processStyle }) {
+        const processedRootStyle = processStyle(style)
+        processedRootStyle.color = "red"
+        const processedTwiceRootStyle = processStyle(processedRootStyle)
+
+        return <div style={processedTwiceRootStyle} />;
+      }
+      const InjectedChild = injectStyles({})(ProcessStylesChild);
+
+      const styleToProccess = {color: "red"};
+      const tree = mountInjector(<InjectedChild style={styleToProccess}/>, [redToBlueProcessor]);
+      expect(tree).to.have.style("color", "red")
+      
+    });
+  })
+
+
+  describe('Injector computeStyle', () => {
+
+    function ComputedStylesChild({ styles, computeStyle, largeRoot }) {
+      const computedRootStyle = computeStyle(styles.defaultRootStyle, {
+        largeRootStyle: largeRoot
+      })
+      return <div style={computedRootStyle} />;
+    }
+    const InjectedChild = injectStyles(stylesToInject)(ComputedStylesChild);
+    
+
+    it('injects computeStyle helper to wrapped component', () => {
+      expect(child.props.computeStyle).to.be.a('function');
+    });
+    it('computes multiple style objects', () => {
+      const tree = mountInjector(<InjectedChild/>);
+      expect(tree).to.have.style("position", "absolute")
+      expect(tree).to.have.style("fontSize", "2rem")
+    })
+    it('computes style object if truthy', () => {
+      const TRUEtree = mountInjector(<InjectedChild largeRoot={true}/>);
+      const TRUTHYtree = mountInjector(<InjectedChild largeRoot={"A"}/>);
+      expect(TRUEtree).to.have.style("position", "absolute")
+      expect(TRUTHYtree).to.have.style("position", "absolute")
+
+      expect(TRUEtree).to.have.style("fontSize", "4rem")
+      expect(TRUTHYtree).to.have.style("fontSize", "4rem")
+    })
+    it('does not compute style object if falsey', () => {
+      const FALSEtree = mountInjector(<InjectedChild largeRoot={false}/>);
+      const FALSEYtree = mountInjector(<InjectedChild largeRoot={""}/>);
+      expect(FALSEtree).to.have.style("position", "absolute")
+      expect(FALSEYtree).to.have.style("position", "absolute")
+
+      expect(FALSEtree).to.have.style("fontSize", "2rem")
+      expect(FALSEYtree).to.have.style("fontSize", "2rem")
+    })
+
+  })
 
 
 });

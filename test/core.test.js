@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { mount, shallow } from 'enzyme';
-import { expect } from 'chai';
 
 import ProviderContainer from './fixtures/ProviderContainer'
 import processStyleObject from '../src/core/processStyleObject'

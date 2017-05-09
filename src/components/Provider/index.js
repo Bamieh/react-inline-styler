@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import shallowEqual from '../../utils/shallowEqual';
+import stampObjectProcessor from '../../core/stampObject'
 import {contextTypes, childContextTypes, propTypes} from './providerShape'
+
 import {
   PIPELINE,
   PIPELINE_PROP,
@@ -18,7 +20,7 @@ class Provider extends Component {
     this.state = {
       configs: this.mergeFromPropsAndContext(props, context),
     };
-    this.pipeline = [...this.props[PIPELINE_PROP]];
+    this.pipeline = [...this.props[PIPELINE_PROP], stampObjectProcessor];
   }
 
   getChildContext() {

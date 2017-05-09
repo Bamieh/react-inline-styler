@@ -27,6 +27,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.24.1",
     "chai": "^3.5.0",
+    "chai-enzyme": "^0.6.1",
     "chai-spies": "^0.7.1",
     "coveralls": "^2.13.1",
     "cross-env": "^4.0.0",
@@ -57,7 +58,9 @@
     ],
     "env": {
       "production": {
-        "presets": ["react-optimize"]
+        "presets": [
+          "react-optimize"
+        ]
       },
       "test": {
         "plugins": [
@@ -70,8 +73,8 @@
   "scripts": {
     "test": "mocha",
     "test:watch": "yarn run test -- --reporter min --watch",
-    "test:cover": "cross-env NODE_ENV=test nyc npm run test",
-    "coverage": "yarn run test:cover && nyc report --reporter=html --reporter=text-lcov",
+    "test:cover": "cross-env NODE_ENV=test nyc yarn run test",
+    "coverage": "yarn run test:cover && nyc report --reporter=html && open coverage/index.html",
     "clean": "babel-node tools/run clean",
     "build": "babel-node tools/run build",
     "prepublish": "yarn run build",
