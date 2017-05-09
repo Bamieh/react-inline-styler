@@ -13,5 +13,5 @@ addons:
 script:
   - yarn test
 after_success:
-  - yarn coveralls
+  - npm run coveralls
 cache: yarn

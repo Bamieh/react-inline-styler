@@ -78,6 +78,6 @@
     "clean": "babel-node tools/run clean",
     "build": "babel-node tools/run build",
     "prepublish": "yarn run build",
-    "coveralls": "nyc yarn test && nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   }
 }
