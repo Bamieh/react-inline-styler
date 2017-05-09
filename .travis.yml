@@ -13,5 +13,6 @@ addons:
 script:
   - yarn test
 after_success:
-  - npm run coveralls
+  - yarn coverage:lcov
+  - yarn coveralls
 cache: yarn

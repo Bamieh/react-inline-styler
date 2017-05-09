@@ -74,10 +74,12 @@
     "test": "mocha",
     "test:watch": "yarn run test -- --reporter min --watch",
     "test:cover": "cross-env NODE_ENV=test nyc yarn run test",
-    "coverage": "yarn run test:cover && nyc report --reporter=html && open coverage/index.html",
     "clean": "babel-node tools/run clean",
     "build": "babel-node tools/run build",
     "prepublish": "yarn run build",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+    "coverage:html": "yarn run test:cover && nyc report --reporter=html open coverage/index.html",
+    "coverage:lcov": "yarn run test:cover && nyc report --reporter=text-lcov",
+    "coverage": "yarn run coverage:html && open coverage/index.html",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   }
 }
