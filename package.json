@@ -80,6 +80,6 @@
     "coverage:html": "yarn run test:cover && nyc report --reporter=html open coverage/index.html",
     "coverage:lcov": "yarn run test:cover && nyc report --reporter=text-lcov",
     "coverage": "yarn run coverage:html && open coverage/index.html",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "coveralls": "cat ./coverage/lcov.info | coveralls -v"
   }
 }
