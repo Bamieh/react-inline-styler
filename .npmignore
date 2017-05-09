@@ -1,4 +1,3 @@
-source
 test
 example
 .sublime-*
@@ -11,3 +10,7 @@ npm-debug.log
 yarn-error.log
 coverage
 .nyc_output
+src
+react-inline-styler.sublime-project
+.travis.yml
+.nycrc
