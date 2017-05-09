@@ -29,7 +29,7 @@
     "chai": "^3.5.0",
     "chai-enzyme": "^0.6.1",
     "chai-spies": "^0.7.1",
-    "coveralls": "^2.13.1",
+    "codecov": "^2.1.0",
     "cross-env": "^4.0.0",
     "enzyme": "^2.8.2",
     "glob": "^7.1.1",
@@ -77,9 +77,9 @@
     "clean": "babel-node tools/run clean",
     "build": "babel-node tools/run build",
     "prepublish": "yarn run build",
-    "coverage:html": "yarn run test:cover && nyc report --reporter=html open coverage/index.html",
-    "coverage:lcov": "yarn run test:cover && nyc report --reporter=text-lcov",
+    "coverage:html": "yarn run test:cover && nyc report --reporter=html",
+    "coverage:lcov": "yarn run test:cover && nyc report --reporter=lcov",
     "coverage": "yarn run coverage:html && open coverage/index.html",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js -v"
+    "codecov": "codecov"
   }
 }

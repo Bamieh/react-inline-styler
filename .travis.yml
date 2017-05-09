@@ -14,5 +14,5 @@ script:
   - yarn test
 after_success:
   - yarn coverage:lcov
-  - yarn coveralls
+  - yarn codecov
 cache: yarn

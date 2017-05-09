@@ -7,7 +7,7 @@
       "distribution",
       "node_modules",
       ".git",
-      "coverage",
+      // "coverage",
       ".nyc_output",
     ],
     "path": "."
