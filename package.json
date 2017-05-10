@@ -1,6 +1,6 @@
 {
   "name": "react-inline-styler",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "react inline styles injector",
   "main": "./distribution/index.js",
   "engines": {
