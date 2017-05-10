@@ -48,14 +48,14 @@ Notice that you can have multiple providers nested inside each other within the 
 
 ```javascript
 import React, {Component} from 'react'
-import ReactInlineStylerProvider from 'react-inline-styler'
+import {InlineStylerProvider} from 'react-inline-styler'
 
 class App extends Component {
   render() {
     return (
-      <ReactInlineStylerProvider>
+      <InlineStylerProvider>
         App Content
-      </ReactInlineStylerProvider>
+      </InlineStylerProvider>
     )
   }
 } 
@@ -96,7 +96,7 @@ Simply add the theme and the helpers inside the configs, and these will be passe
 
 ```javascript
 import React, {Component} from 'react'
-import ReactInlineStylerProvider from 'react-inline-styler'
+import {InlineStylerProvider} from 'react-inline-styler'
 
 class App extends Component {
   render() {
@@ -115,9 +115,9 @@ class App extends Component {
       helpers,
     }
     return (
-      <ReactInlineStylerProvider configs={configs}>
+      <InlineStylerProvider configs={configs}>
         App Content
-      </ReactInlineStylerProvider>
+      </InlineStylerProvider>
     )
   }
 } 
@@ -142,7 +142,7 @@ Add a `pipline` prop array to the `Provider` with your processor functions.
 
 ```
 import React, {Component} from 'react'
-import ReactInlineStylerProvider from 'react-inline-styler'
+import {InlineStylerProvider} from 'react-inline-styler'
 
 import rtlProcessor from 'react-inline-styler-processor-rtl'
 import autopefixerProcessor from 'react-inline-styler-processor-autoprefixer'
@@ -159,9 +159,9 @@ class App extends Component {
       enablePrefixing: !DEVELOPMENT,
     }
     return (
-      <ReactInlineStylerProvider pipeline={pipeline} configs={configs}>
+      <InlineStylerProvider pipeline={pipeline} configs={configs}>
         App Content
-      </ReactInlineStylerProvider>
+      </InlineStylerProvider>
     )
   }
 }

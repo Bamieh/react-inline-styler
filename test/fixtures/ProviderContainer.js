@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import InlineStylerProvider from '../../src';
+import {InlineStylerProvider} from '../../src';
 
 const defaultProps = {
   initialConfigs: {},

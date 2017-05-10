@@ -1,2 +1,2 @@
-export injectStyles from './components/Injector'
-export default from  './components/Provider'
+export InlineStylerProvider from  './components/Provider'
+export default from  './components/Injector'

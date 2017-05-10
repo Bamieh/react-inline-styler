@@ -11,8 +11,8 @@ import { mount, shallow, render } from 'enzyme';
 
 import ProviderContainer from './fixtures/ProviderContainer'
 import InjectedComponent from './fixtures/InjectedComponent'
-import {injectStyles} from '../src';
-import InlineStylerProvider from '../src';
+
+import injectStyles, {InlineStylerProvider} from '../src';
 
 import stylesToInject from './fixtures/styles'
 import {redToBlueProcessor} from './fixtures/processors'
