@@ -57,6 +57,7 @@
     "coverage:html": "yarn run test:cover && nyc report --reporter=html",
     "coverage:lcov": "yarn run test:cover && nyc report --reporter=lcov",
     "coverage": "yarn run coverage:html && open coverage/index.html",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "codecov": "codecov"
   }
 }
