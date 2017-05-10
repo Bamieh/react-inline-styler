@@ -1,3 +1,4 @@
+[![npm version](https://badge.fury.io/js/react-inline-styler.svg)](https://badge.fury.io/js/react-inline-styler)
 [![Build Status](https://travis-ci.org/Bamieh/react-inline-styler.svg?branch=master)](https://travis-ci.org/Bamieh/react-inline-styler)
 [![Coverage Status: coveralls](https://coveralls.io/repos/github/Bamieh/react-inline-styler/badge.svg?branch=master)](https://coveralls.io/github/Bamieh/react-inline-styler?branch=master)
 [![Coverage Status: codecov](https://codecov.io/gh/Bamieh/react-inline-styler/branch/master/graph/badge.svg)](https://codecov.io/gh/Bamieh/react-inline-styler)
