@@ -4,10 +4,10 @@
       "yarn.lock"
     ],
     "folder_exclude_patterns": [
-      // "distribution",
+      "distribution",
       "node_modules",
       ".git",
-      // "coverage",
+      "coverage",
       ".nyc_output",
     ],
     "path": "."

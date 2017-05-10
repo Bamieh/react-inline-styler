@@ -47,7 +47,7 @@
     "sinon": "^2.1.0"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "cross-env NODE_ENV=test mocha",
     "test:watch": "yarn run test -- --reporter min --watch",
     "test:cover": "cross-env NODE_ENV=test nyc yarn run test",
     "clean": "babel-node tools/run clean",
