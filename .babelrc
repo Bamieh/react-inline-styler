@@ -1,0 +1,26 @@
+{
+  "env": {
+    "production": {
+      "plugins": [
+        "transform-runtime",
+        "babel-plugin-inject"
+      ],
+      "presets": [
+        "modern-browsers",
+        "react-optimize",
+        "stage-0",
+        "react"
+      ]
+    },
+    "test": {
+      "plugins": [
+        "istanbul",
+        "rewire"
+      ],
+      "presets": [
+        "stage-0",
+        "react"
+      ]
+    }
+  }
+}
