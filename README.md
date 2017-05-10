@@ -141,7 +141,7 @@ Add a `pipline` prop array to the `Provider` with your processor functions.
 - The autoprefixer prefixes the styles dynamically based on the `user-agent` currently in used, it also works with isomorphic apps.
 
 
-```
+```javascript
 import React, {Component} from 'react'
 import {InlineStylerProvider} from 'react-inline-styler'
 
