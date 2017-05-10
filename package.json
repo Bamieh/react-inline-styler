@@ -33,6 +33,7 @@
     "chai-enzyme": "^0.6.1",
     "chai-spies": "^0.7.1",
     "codecov": "^2.1.0",
+    "coveralls": "^2.13.1",
     "cross-env": "^4.0.0",
     "enzyme": "^2.8.2",
     "glob": "^7.1.1",
