@@ -12,6 +12,7 @@ export const isInlineStylerObject = (obj) => {
 
 
 export default function stampObjectProcessor(styleObject) {
+  if(!styleObject) return styleObject;
   return Object.setPrototypeOf(styleObject, stampedPrototype);  
 }
 

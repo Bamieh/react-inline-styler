@@ -1,6 +1,6 @@
 {
   "name": "react-inline-styler",
-  "version": "1.3.3",
+  "version": "1.3.5",
   "description": "react inline styles injector",
   "main": "./distribution/index.js",
   "license": "MIT",
@@ -10,14 +10,13 @@
   },
   "author": "Ahmad Bamieh <ahmadbamieh@gmail.com>",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Bamieh/react-inline-styler"
+    "type": "git",
+    "url": "https://github.com/Bamieh/react-inline-styler"
   },
   "dependencies": {
     "react": "^15.3.2"
   },
   "devDependencies": {
-    "assets-webpack-plugin": "^3.5.1",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
@@ -25,9 +24,9 @@
     "babel-plugin-istanbul": "^4.1.1",
     "babel-plugin-rewire": "^1.1.0",
     "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-modern-browsers": "^9.0.2",
     "babel-preset-env": "^1.4.0",
     "babel-preset-es2015": "^6.22.0",
+    "babel-preset-modern-browsers": "^9.0.2",
     "babel-preset-node5": "^11.1.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-optimize": "^1.0.1",
@@ -48,8 +47,7 @@
     "object.entries": "^1.0.4",
     "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.4.2",
-    "rimraf": "^2.6.1",
-    "sinon": "^2.1.0"
+    "rimraf": "^2.6.1"
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha",

@@ -13,7 +13,7 @@ import castToFunction from '../../utils/castToFunction';
 
 import processStyleObject from '../../core/processStyleObject'
 import processStyleTree from '../../core/processStyleTree'
-import {isInlineStylerObject} from '../../core/stampObject'
+import stampObjectProcessor, {isInlineStylerObject} from '../../core/stampObject'
 
 function getDisplayName(Component) {
   return Component.displayName || Component.name || 'Component';
@@ -55,7 +55,7 @@ function injector(styleTree) {
 
       }
       computeStyle(...styles) {
-        return styles.reduce((acc, style) => {
+        return stampObjectProcessor(styles.reduce((acc, style) => {
           if( !style || isInlineStylerObject(style) ) return Object.assign(acc, style);
           Object.entries(style).forEach(([styleKey, styleValue]) => {
             if(styleValue) {
@@ -63,7 +63,7 @@ function injector(styleTree) {
             }
           })
           return acc;
-        }, {})
+        }, {}))
       }
       processStyle(styleObject) {
         if(!styleObject || isInlineStylerObject(styleObject)) return styleObject;
