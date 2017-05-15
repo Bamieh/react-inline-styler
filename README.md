@@ -41,7 +41,7 @@ And this is how *React Inline Styler* was born, it is a solution for scalable, o
 
 ## Example Usage
 
-Check the example file for a full working example, that uses a custom processing pipeline, and configurations.
+Check the [example file](https://github.com/Bamieh/react-inline-styler/tree/master/example) for a full working example, that uses a custom processing pipeline, and configurations.
 
 ### Step 1: Wrapping the app with a Provider
 Notice that you can have multiple providers nested inside each other within the app.
@@ -134,7 +134,7 @@ The processor pipeline is an array of processors, each modify or add to the styl
 Add a `pipline` prop array to the `Provider` with your processor functions.
 
 
-##### Example using some processors
+##### Processors
 
 - The [RTL processor](https://github.com/Bamieh/react-inline-styler-processor-rtl) allows you to use the same style base for both rtl and ltr languages, it will be used here as an example.
 
@@ -215,6 +215,79 @@ const styles = (configs) => {
 }
 
 export default styles
+```
+
+### processing and merging styles in the component 
+
+The injector (HOC) function exposes two helper methods to the component, `processStyle` and `computeStyle`.
+
+##### processStyles
+`processStyles` is used to process a style dynamically created inside the component (if you dynamic attibutes based on props)
+
+```javascript
+const processedStyle = processStyles({
+  color: this.props.color,
+  fontSize: 13,
+})
+```
+
+##### computeStyle
+
+`computeStyle` is used to assign multiple styles together. its inspired by the ease of [classnames](https://github.com/JedWatson/classnames) library, but this one is for styles instead of classes.
+
+```javascript
+const computedStyle = computeStyle(alwaysHaveThisStyle, {
+  conditionalStyle: this.props.withConditional,
+})
+```
+here if `withConditional` prop is true, `conditionalStyle` style will be merged with in the final result otherwise, just `alwaysHaveThisStyle` will be outputted.
+
+`computeStyle` does not merge unprocessed styles, if you have a dynamic style created inside the component, run the processor against it first.
+
+```javascript
+const computedStyle = computeStyle(alwaysHaveThisStyle, {
+  conditionalStyle: this.props.withConditional,
+}, procesStyle({color: this.props.color}))
+```
+
+```javascript
+import React, {Component} from 'react'
+import injectStyles from 'react-inline-styler'
+import stylesToInject from './styles'
+
+class MyComponent extends Component {
+  render() {
+    const {
+      thick,
+      fontSizeProp,
+      styles,
+      processStyle,
+      computeStyle,
+    } = this.props.styles;
+
+    const {
+      rootStyle,
+      thickFontStyle,
+    } = styles;
+
+    const computedRootStyle = computeStyle(rootStyle, {
+      thickFontStyle: thick,
+    })
+    const processedTextStyle = processStyle({
+      fontSize: fontSizeProp,
+    })
+    return (
+      <div style={computedRootStyle}>
+        <span style={processedTextStyle} >hello world!</span>
+      </div>
+    )
+  }
+}
+
+export default injectStyles(stylesToInject)(MyComponent)
+```
+processStyle,
+      computeStyle
 ```
 
 ## License
