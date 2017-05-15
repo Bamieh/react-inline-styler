@@ -1,13 +1,13 @@
 {
   "name": "react-inline-styler",
-  "version": "1.3.6",
+  "version": "1.3.61",
   "description": "react inline styles injector",
   "main": "./distribution/index.js",
   "license": "MIT",
   "keywords": [
     "react",
     "styles",
-    "inlin-styles",
+    "inline-styles",
     "javascript-css",
     "inline-css",
     "inline-styler"
