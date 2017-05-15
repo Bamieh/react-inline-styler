@@ -286,9 +286,6 @@ class MyComponent extends Component {
 
 export default injectStyles(stylesToInject)(MyComponent)
 ```
-processStyle,
-      computeStyle
-```
 
 ## License
 
