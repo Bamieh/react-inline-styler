@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import ReactInlineStylerProvider from 'react-inline-styler'
+import {InlineStylerProvider} from 'react-inline-styler'
 
 import rtlProcessor from 'react-inline-styler-processor-rtl'
 import autopefixerProcessor from 'react-inline-styler-processor-autoprefixer'
@@ -19,12 +19,12 @@ class App extends Component {
     }
 
     return (
-      <ReactInlineStylerProvider
+      <InlineStylerProvider
         configs={configs}
         pipeline={reactInlineStylerPipeline}
       >
         {this.props.children}
-      </ReactInlineStylerProvider>
+      </InlineStylerProvider>
     )
   }
 } 
