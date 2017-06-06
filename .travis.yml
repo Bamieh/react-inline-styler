@@ -12,6 +12,9 @@ addons:
       - g++-4.8
 script:
   - yarn test
+branches:
+  only: 
+    - master
 after_success:
   - yarn coverage:lcov
   - yarn codecov
