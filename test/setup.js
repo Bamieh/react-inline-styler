@@ -3,6 +3,11 @@ require('babel-register')();
 
 process.env.NODE_ENV = 'test';
 
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
+
 var jsdom = require('jsdom').jsdom;
 var entries = require('object.entries');
 
