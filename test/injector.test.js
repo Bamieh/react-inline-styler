@@ -1,9 +1,10 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
   findRenderedDOMComponentWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 
 import { mount, shallow, render } from 'enzyme';
