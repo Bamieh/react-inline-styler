@@ -22,8 +22,8 @@ describe('Core', () => {
 
   const emptyPipeline = [];
   const emptyConfig = {};
-  const redToBluePipeline = [redToBlueProcessor];
-  const useConfigsPipeline = [redToBlueProcessor, addFontSize];
+  const redToBluePipeline = [redToBlueProcessor]; 
+  const useConfigsPipeline = [redToBlueProcessor, addFontSize]; 
   const fontSizeConfigs = {fontSize: 14}
 
   describe('processStyleObject', () => {

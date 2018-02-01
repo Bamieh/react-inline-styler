@@ -65,7 +65,7 @@ describe('Injector HOC', () => {
     expect(error).to.not.equal(null);
     expect(error.message).to.equal(expectedErrorMessage);
   });
-
+  
   it('injects styles prop to wrapped component', () => {
       expect(child.props.styles).to.be.an('object');
   });
@@ -80,7 +80,7 @@ describe('Injector HOC', () => {
         spy();
         return <div style={{color: 'red'}} data-styles={styles} />;
       }
-
+      
       const InjectedChild = injectStyles(stylesToInject)(SpiedChild);
 
       const tree = renderIntoDocument(
@@ -107,7 +107,7 @@ describe('Injector HOC', () => {
       return <div style={{color: 'red'}} data-styles={styles} />;
     }
     const InjectedChild = injectStyles(stylesToInject)(SpiedChild);
-
+    
     const tree = renderIntoDocument(
       <ProviderContainer initialConfigs={initialConfigs}>
         <InjectedChild />
@@ -157,7 +157,7 @@ describe('Injector HOC', () => {
       const styleToProccess = {color: "red"};
       const tree = mountInjector(<InjectedChild style={styleToProccess}/>, [redToBlueProcessor]);
       expect(tree).to.have.style("color", "red")
-
+      
     });
   })
 
@@ -171,7 +171,7 @@ describe('Injector HOC', () => {
       return <div style={computedRootStyle} />;
     }
     const InjectedChild = injectStyles(stylesToInject)(ComputedStylesChild);
-
+    
 
     it('injects computeStyle helper to wrapped component', () => {
       expect(child.props.computeStyle).to.be.a('function');
