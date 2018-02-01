@@ -1,39 +1,30 @@
 {
-  "presets": [
-    [
-      "env",
-      {
+    "presets": [
+      ["@babel/preset-env", {
         "targets": {
-          "node": "current"
-        }
-      }
+          "browsers": [
+            ">1%",
+            "last 4 versions",
+            "Firefox ESR",
+            "not ie < 9",
+            "Explorer 11",
+          ]
+        },
+        "debug": true,
+        "useBuiltIns": "usage"
+      }],
+      "@babel/preset-react"
     ],
-    "stage-0",
-    "react"  
-  ],
-  "env": {
-    "production": {
-      "plugins": [
-        "transform-es2015-template-literals",
-        "transform-runtime",
-        "babel-plugin-inject"
-      ],
-      "presets": [
-        "modern-browsers",
-        "react-optimize",
-        "stage-0",
-        "react"
-      ]
-    },
+    "plugins": [
+      "@babel/plugin-proposal-export-default-from",
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-proposal-class-properties"
+    ],
+    "env": {
     "test": {
-      "plugins": [
-        "istanbul",
-        "rewire"
-      ],
-      "presets": [
-        "stage-0",
-        "react"
-      ]
+        "plugins": [
+          "istanbul"
+        ]
+      }
     }
-  }
 }
