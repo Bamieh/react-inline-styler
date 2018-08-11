@@ -58,7 +58,6 @@ describe('Injector HOC', () => {
   const child = findRenderedComponentWithType(tree, Foil);
 
   it('hoists non react statics', () => {
-    console.log(InjectedChild)
     expect(InjectedChild.getInitialProps).to.be.a('function');
   });
 
