@@ -6,6 +6,7 @@ import shallowEqual from '../../utils/shallowEqual';
 import isPlainObject from '../../utils/isPlainObject';
 
 import invariant from 'invariant';
+import hoistNonReactStatics from 'hoist-non-react-statics';
 
 import {UNWRAPPED_INJECTOR_ERR, PIPELINE, CONFIGURATIONS} from '../../constants'
 
@@ -119,7 +120,7 @@ function injector(styleTree) {
     Inject.WrappedComponent = WrappedComponent;
     Inject.contextTypes = contextTypes;
 
-    return Inject;
+    return hoistNonReactStatics(Inject, WrappedComponent);
   };
 };
 
