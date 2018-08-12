@@ -38,6 +38,9 @@ describe('Injector HOC', () => {
         [CONFIGURATIONS]: PropTypes.object.isRequired
       }
 
+      static getInitialProps() {
+        return { foo: 'bar' }
+      }
       render() {
         return <Foil {...this.props}><div>{this.props.children}</div></Foil>;
       }
@@ -53,6 +56,10 @@ describe('Injector HOC', () => {
     </InlineStylerProvider>
   );
   const child = findRenderedComponentWithType(tree, Foil);
+
+  it('hoists non react statics', () => {
+    expect(InjectedChild.getInitialProps).to.be.a('function');
+  });
 
   it('throws if Provider is not wrapping a higher component of the invoked Injector', () => {
     const expectedErrorMessage = UNWRAPPED_INJECTOR_ERR(InjectedComponent.displayName)

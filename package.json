@@ -69,5 +69,8 @@
     "coverage": "npm run coverage:html && open coverage/index.html",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "codecov": "codecov"
+  },
+  "dependencies": {
+    "hoist-non-react-statics": "^3.0.1"
   }
 }
